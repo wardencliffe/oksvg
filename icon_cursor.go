@@ -199,6 +199,8 @@ func (c *IconCursor) readStyleAttr(curStyle *PathStyle, k, v string) error {
 		var err error
 		curStyle.fillerColor, err = ParseSVGColor(v)
 		return err
+	case "fill-rule":
+		curStyle.UseNonZeroWinding = strings.EqualFold(v, "evenodd")
 	case "stroke":
 		gradient, ok := c.ReadGradURL(v, curStyle.linerColor)
 		if ok {
